@@ -1,0 +1,137 @@
+name: Release macOS App
+
+# 普通 main 分支更新只更新源码；明确推送版本 tag 才会发布下载包。
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: '已存在且版本匹配的正式 tag，例如 v1.0.9'
+        required: true
+        type: string
+
+# 编译 job 只读取仓库；只有最后发布 job 获得 Release 所需的 contents 写权限。
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: macos-15
+    timeout-minutes: 30
+    env:
+      # 官方 macos-15 runner 清单明确提供该版本，与当前本地 Swift 6.2 构建环境一致。
+      DEVELOPER_DIR: /Applications/Xcode_26.0.1.app/Contents/Developer
+      RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
+    outputs:
+      tag: ${{ steps.metadata.outputs.tag }}
+      commit: ${{ steps.metadata.outputs.commit }}
+    steps:
+      - name: Validate requested tag
+        shell: bash
+        run: |
+          set -euo pipefail
+          # 来自 dispatch 的文本通过环境变量传入，不插入 shell 代码；只接受正式版本格式。
+          if [[ ! "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Expected a version tag such as v1.0.9." >&2
+            exit 1
+          fi
+
+      - name: Checkout exact release tag
+        # actions/checkout v7；固定官方 tag 对应 commit，避免浮动引用改变发行代码。
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: refs/tags/${{ inputs.tag || github.ref_name }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Verify version and record source commit
+        id: metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -d "$DEVELOPER_DIR"
+          version=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' Support/Info.plist)
+          test "$RELEASE_TAG" = "v$version"
+          commit=$(git rev-parse HEAD)
+          tag_commit=$(git rev-parse "refs/tags/${RELEASE_TAG}^{commit}")
+          test "$commit" = "$tag_commit"
+          printf 'tag=%s\ncommit=%s\n' "$RELEASE_TAG" "$commit" >> "$GITHUB_OUTPUT"
+          swift --version
+
+      - name: Run core tests
+        shell: bash
+        run: swift test --disable-sandbox
+
+      - name: Build and validate Universal distribution
+        shell: bash
+        run: ./scripts/package-release.sh "$RELEASE_TAG"
+
+      - name: Retain validated distribution for publishing
+        # actions/upload-artifact v7；ZIP 本身已经压缩，避免再次压缩浪费时间。
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: release-${{ steps.metadata.outputs.tag }}
+          path: dist/releases/${{ steps.metadata.outputs.tag }}/*
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 14
+
+  publish:
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    env:
+      RELEASE_TAG: ${{ needs.build.outputs.tag }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - name: Download validated distribution
+        # actions/download-artifact v8；只消费本次构建的固定名称 artifact。
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: release-${{ needs.build.outputs.tag }}
+          path: release
+
+      - name: Verify transport checksums
+        shell: bash
+        working-directory: release
+        run: sha256sum -c SHA256SUMS.txt
+
+      - name: Create draft, attach downloads, then publish
+        shell: bash
+        env:
+          # 使用 GitHub 为此 job 签发的短期令牌，不需要个人 PAT 或本机 OAuth 授权。
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          archive="AdbManager-${RELEASE_TAG}-macOS-universal.zip"
+          test -s "release/$archive"
+          test -s release/SHA256SUMS.txt
+          test -s release/release-notes.md
+
+          # 已存在的任何发行（含草稿）都停止，避免重跑时替换用户已经发布的附件。
+          if gh release view "$RELEASE_TAG" --repo "$GH_REPO" >/dev/null 2>&1; then
+            echo "Release already exists; no release or assets were overwritten." >&2
+            exit 1
+          fi
+
+          # verify-tag 禁止 CLI 自动创建/移动 tag；附件全部上传成功后才公开草稿。
+          gh release create "$RELEASE_TAG" "release/$archive" release/SHA256SUMS.txt \
+            --repo "$GH_REPO" --verify-tag --draft \
+            --title "AdbManager $RELEASE_TAG" --notes-file release/release-notes.md
+
+          expected=$(printf '%s\n' "$archive" SHA256SUMS.txt | sort)
+          actual=$(gh release view "$RELEASE_TAG" --repo "$GH_REPO" --json assets \
+            --jq '.assets | map(.name) | sort | join("\n")')
+          test "$actual" = "$expected"
+          gh release edit "$RELEASE_TAG" --repo "$GH_REPO" --draft=false --latest
+          test "$(gh release view "$RELEASE_TAG" --repo "$GH_REPO" --json isDraft --jq '.isDraft')" = false
+          url=$(gh release view "$RELEASE_TAG" --repo "$GH_REPO" --json url --jq '.url')
+          printf 'Published release: %s\n' "$url" >> "$GITHUB_STEP_SUMMARY"

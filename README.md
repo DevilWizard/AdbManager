@@ -1,5 +1,7 @@
 # AdbManager
 
+[下载 macOS App](https://github.com/DevilWizard/AdbManager/releases/latest)
+
 ![AdbManager 产品截图](docs/images/AdbManager-screenshot.jpg)
 
 *截图使用演示设备和示例网络地址。*
@@ -21,6 +23,27 @@
 
 ## 构建与运行
 
+如果只使用应用，可直接下载 [最新 Release](https://github.com/DevilWizard/AdbManager/releases/latest)，无需安装 Xcode 或编译源码。源码开发和构建步骤见本节下方。
+
+### 下载与安装
+
+下载包为 Universal App，包含 Apple Silicon（arm64）与 Intel（x86_64）两种架构，最低支持 macOS 14。
+
+1. 使用 macOS 14 或更新版本，从 Release 的 **Assets** 下载 `AdbManager-v1.0.9-macOS-universal.zip`，以及同页的 `SHA256SUMS.txt`。GitHub 自动生成的 **Source code** 是源码压缩包，使用 App 请下载上面的 App ZIP。
+2. 在下载目录校验压缩包：
+
+   ```bash
+   shasum -a 256 -c SHA256SUMS.txt
+   ```
+
+3. 解压 ZIP，打开其中的 `AdbManager` 文件夹，将 `AdbManager.app` 拖到“应用程序”，然后打开。文件夹内同时提供安装说明和许可声明。
+4. 本机需已有 `adb`。已安装 Android Studio 的用户可使用其 SDK Platform Tools；其他用户可从 [Android 官方 Platform Tools 页面](https://developer.android.com/tools/releases/platform-tools) 下载 Mac 版本。首次运行找不到 ADB 时，在应用设置中选择解压后的 `platform-tools/adb`。
+5. 手机开启 USB 调试，插线后允许这台 Mac 的调试授权，再选择设备操作。
+
+当前下载包采用 ad-hoc 签名，尚未使用 Developer ID 签名或经过 Apple 公证。首次打开可能被 macOS 拦截；确认下载来源、校验值和软件可信后，可按 [Apple 官方说明](https://support.apple.com/en-us/102445)，在尝试打开后进入“系统设置 → 隐私与安全性”，对这一个应用选择“仍要打开”。
+
+### 从源码构建
+
 准备以下环境：
 
 - macOS 14 或更新版本。
@@ -39,13 +62,15 @@ open dist/AdbManager.app
 
 使用 Xcode 开发时，打开项目根目录的 `Package.swift`，选择 `AdbManager` scheme。正式运行建议使用构建脚本生成的 `.app`，脚本会同时组装图标及品牌资源。项目没有第三方 Swift Package 依赖。
 
-应用会检查常见 SDK、Homebrew 与 `PATH` 中的 ADB 路径；找不到时可在界面中手动选择 `adb` 可执行文件。应用不启用 App Sandbox，以便运行用户指定的本地 ADB 工具。当前产物采用本地 ad-hoc 签名；对外分发时需要 Developer ID 签名与公证。
+应用会检查常见 SDK、Homebrew 与 `PATH` 中的 ADB 路径；找不到时可在界面中手动选择 `adb` 可执行文件。应用不启用 App Sandbox，以便运行用户指定的本地 ADB 工具。当前产物采用 ad-hoc 签名；Developer ID 签名与公证用于后续改进首次下载安装体验。
 
 运行核心测试：
 
 ```bash
 swift test
 ```
+
+维护者发布新版的步骤见 [Release 发布说明](docs/RELEASING.md)。
 
 ## 一键无线连接
 

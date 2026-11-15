@@ -6,6 +6,14 @@ set -euo pipefail
 SCRIPT_DIRECTORY="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIRECTORY="$(cd -- "${SCRIPT_DIRECTORY}/.." && pwd)"
 CONFIGURATION="${ADB_MANAGER_CONFIGURATION:-release}"
+# 默认继续生成当前 Mac 架构；发行时显式指定 --universal，合并 Intel 与 Apple Silicon。
+BUILD_UNIVERSAL=false
+if [[ "${1:-}" == "--universal" && "$#" -eq 1 ]]; then
+    BUILD_UNIVERSAL=true
+elif [[ "$#" -ne 0 ]]; then
+    echo "用法：$0 [--universal]" >&2
+    exit 1
+fi
 OUTPUT_DIRECTORY="${PROJECT_DIRECTORY}/dist"
 APPLICATION_PATH="${OUTPUT_DIRECTORY}/AdbManager.app"
 # 品牌资源随应用离线分发；集中定义目录，避免资源预检与组装路径不一致。
@@ -21,7 +29,7 @@ if ! command -v swift >/dev/null 2>&1; then
 fi
 
 # 提前检查资源，避免生成缺少图标或应用元数据的不完整应用。
-for resource in "Assets/AndroidHead.png" "Assets/AppIcon.icns" "Support/Info.plist"; do
+for resource in "Assets/AndroidHead.png" "Assets/AppIcon.icns" "Support/Info.plist" "LICENSE" "THIRD_PARTY_NOTICES.md"; do
     if [[ ! -f "${PROJECT_DIRECTORY}/${resource}" ]]; then
         echo "缺少构建资源：${resource}" >&2
         exit 1
@@ -49,15 +57,30 @@ mkdir -p "${BUILD_DIRECTORY}/module-cache" "${BUILD_DIRECTORY}/cache" \
     "${BUILD_DIRECTORY}/config" "${BUILD_DIRECTORY}/security"
 SWIFT_PACKAGE_OPTIONS=(
     --package-path "${PROJECT_DIRECTORY}"
-    --scratch-path "${BUILD_DIRECTORY}"
     --cache-path "${BUILD_DIRECTORY}/cache"
     --config-path "${BUILD_DIRECTORY}/config"
     --security-path "${BUILD_DIRECTORY}/security"
     --disable-sandbox
     --configuration "${CONFIGURATION}"
 )
-swift build "${SWIFT_PACKAGE_OPTIONS[@]}"
-BINARY_DIRECTORY="$(swift build "${SWIFT_PACKAGE_OPTIONS[@]}" --show-bin-path)"
+# 每个目标架构使用独立 scratch/module cache，防止交叉编译互相覆盖中间产物。
+# 两次单架构 SwiftPM 构建之后再 lipo，不依赖多架构模式下的额外 Xcode 工程生成行为。
+ARCHITECTURE_BINARIES=()
+if [[ "${BUILD_UNIVERSAL}" == true ]]; then
+    for architecture in arm64 x86_64; do
+        ARCH_BUILD_DIRECTORY="${BUILD_DIRECTORY}/universal-${architecture}"
+        export CLANG_MODULE_CACHE_PATH="${ARCH_BUILD_DIRECTORY}/module-cache"
+        export SWIFTPM_MODULECACHE_OVERRIDE="${ARCH_BUILD_DIRECTORY}/module-cache"
+        ARCH_OPTIONS=("${SWIFT_PACKAGE_OPTIONS[@]}" --scratch-path "${ARCH_BUILD_DIRECTORY}" --arch "${architecture}")
+        swift build "${ARCH_OPTIONS[@]}"
+        BINARY_DIRECTORY="$(swift build "${ARCH_OPTIONS[@]}" --show-bin-path)"
+        ARCHITECTURE_BINARIES+=("${BINARY_DIRECTORY}/AdbManager")
+    done
+else
+    swift build "${SWIFT_PACKAGE_OPTIONS[@]}" --scratch-path "${BUILD_DIRECTORY}"
+    BINARY_DIRECTORY="$(swift build "${SWIFT_PACKAGE_OPTIONS[@]}" --scratch-path "${BUILD_DIRECTORY}" --show-bin-path)"
+    ARCHITECTURE_BINARIES+=("${BINARY_DIRECTORY}/AdbManager")
+fi
 
 # 先在临时目录组装完整应用；构建或签名失败时保留上一次可用产物。
 mkdir -p "${OUTPUT_DIRECTORY}"
@@ -65,10 +88,18 @@ STAGING_DIRECTORY="$(mktemp -d "${OUTPUT_DIRECTORY}/.AdbManager.build.XXXXXX")"
 trap 'rm -rf "${STAGING_DIRECTORY}"' EXIT
 STAGING_APPLICATION="${STAGING_DIRECTORY}/AdbManager.app"
 mkdir -p "${STAGING_APPLICATION}/Contents/MacOS" "${STAGING_APPLICATION}/Contents/Resources"
-cp "${BINARY_DIRECTORY}/AdbManager" "${STAGING_APPLICATION}/Contents/MacOS/AdbManager"
+if [[ "${BUILD_UNIVERSAL}" == true ]]; then
+    /usr/bin/xcrun lipo -create "${ARCHITECTURE_BINARIES[@]}" -output "${STAGING_APPLICATION}/Contents/MacOS/AdbManager"
+    /usr/bin/xcrun lipo "${STAGING_APPLICATION}/Contents/MacOS/AdbManager" -verify_arch arm64 x86_64
+else
+    cp "${ARCHITECTURE_BINARIES[0]}" "${STAGING_APPLICATION}/Contents/MacOS/AdbManager"
+fi
 cp "${PROJECT_DIRECTORY}/Support/Info.plist" "${STAGING_APPLICATION}/Contents/Info.plist"
 cp "${PROJECT_DIRECTORY}/Assets/AndroidHead.png" "${STAGING_APPLICATION}/Contents/Resources/AndroidHead.png"
 cp "${PROJECT_DIRECTORY}/Assets/AppIcon.icns" "${STAGING_APPLICATION}/Contents/Resources/AppIcon.icns"
+# 把代码许可与第三方归属随 App 一同携带，下载者移动 .app 后仍能找到这些说明。
+cp "${PROJECT_DIRECTORY}/LICENSE" "${STAGING_APPLICATION}/Contents/Resources/LICENSE"
+cp "${PROJECT_DIRECTORY}/THIRD_PARTY_NOTICES.md" "${STAGING_APPLICATION}/Contents/Resources/THIRD_PARTY_NOTICES.md"
 # 按批准品牌逐个复制，只包含官方矢量 PDF 或官方高分辨率 PNG；Nokia 暂无可信手机字标，
 # 因而不打包曾经误用的网络公司标识，运行时自动显示 Android 兜底。
 PACKAGED_BRAND_DIRECTORY="${STAGING_APPLICATION}/Contents/Resources/DeviceBrands"
