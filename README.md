@@ -1,5 +1,9 @@
 # AdbManager
 
+![AdbManager 产品截图](docs/images/AdbManager-screenshot.jpg)
+
+*截图使用演示设备和示例网络地址。*
+
 原生 SwiftUI macOS Android 设备管理工具，支持多设备、插线后一键建立无线 ADB 连接，以及 Android 全局 HTTP 代理设置。最低系统版本为 macOS 14。
 
 当前版本：**1.0.9**（构建号 10）。
