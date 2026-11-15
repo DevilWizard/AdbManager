@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "retrieved_on": "2026-11-15",
+  "source_policy": "Official websites/official archives or their original embedded image bytes only; no algorithmic recoloring.",
+  "brands": [
+    {
+      "id": "samsung",
+      "appearance": "dark",
+      "status": "available",
+      "render_input": "Originals/samsung/Samsung_Orig_Wordmark_WHITE_RGB.ai",
+      "sha256": "0ab6429e34956867c13b9db6421066d3f784102e815e769074ec63087811b1dc",
+      "format": "pdf",
+      "source_page": "https://www.samsung.com/us/about-us/brand-identity/logo/",
+      "download_url": "https://images.samsung.com/is/content/samsung/assets/global/about-us/resource/Samsung_lettermark.zip",
+      "archive_sha256": "b1a43fd506c2fdaa40724eea96645c9c3f2091f502d70d8039a7fe6f42a2c994",
+      "archive_entry": "White/Samsung_Orig_Wordmark_WHITE_RGB.ai",
+      "background": "dark",
+      "transformations": [],
+      "note": "Official white RGB artwork. The .ai original is PDF-compatible; copy its bytes to .pdf without recoloring or rasterizing.",
+      "artifacts": [
+        {
+          "path": "Originals/samsung/Samsung_Orig_Wordmark_WHITE_RGB.ai",
+          "sha256": "0ab6429e34956867c13b9db6421066d3f784102e815e769074ec63087811b1dc",
+          "bytes": 276590
+        },
+        {
+          "path": "Originals/samsung/Samsung_Orig_Wordmark_WHITE_RGB.png",
+          "sha256": "1bc9ad20e3a01f3977f8fb16c0fd342a54b21115264d8b09b89096a2acccea78",
+          "bytes": 31147,
+          "width": 1600,
+          "height": 425,
+          "bit_depth": 8,
+          "color_type": 6
+        }
+      ]
+    },
+    {
+      "id": "google",
+      "appearance": "shared",
+      "status": "reuse_base",
+      "source_page": "https://partnermarketinghub.withgoogle.com/brands/google/branding-guidelines/how-to-show-googles-brand/",
+      "download_url": "https://storage.googleapis.com/pe-portal-consumer-prod-wagtail-static/original_images/GoogleG_FullColor_RGB.png",
+      "background_recommendation": {
+        "light": "white",
+        "dark": "black"
+      },
+      "note": "Official Google G guidance requires the current full-color gradient version and recommends simple white or black backgrounds. Reuse the same transparent full-color G for both appearances; no recoloring, monochrome conversion or extra white badge."
+    },
+    {
+      "id": "xiaomi",
+      "appearance": "shared",
+      "status": "reuse_base",
+      "source_page": "https://www.mi.com/",
+      "download_url": "https://cdn.cnbj1.fds.api.mi-img.com/mi.com-assets/home/pro-assets/45fc632.js",
+      "note": "The official homepage MiLogo SVG already contains its orange field and white mi mark. Reuse the original complete graphic in both appearances. This is an observed self-contained high-contrast graphic, not a claim that a separate official dark-mode asset was found."
+    },
+    {
+      "id": "oneplus",
+      "appearance": "dark",
+      "status": "available",
+      "render_input": "Originals/oneplus/OnePlus_L_White_RGB.png",
+      "sha256": "7824bd1b221f8b4109aad1a6d8bba23f7b85408b2a9cb3e434b696b1de2c9c96",
+      "format": "png",
+      "source_page": "https://www.oneplus.com/uk/brand/asset",
+      "download_url": "https://oasis.opstatics.com/content/dam/oasis/page/vi/OnePlus-brand-assets.zip",
+      "archive_sha256": "bb4418994996cee0afce0a960ba741b72e68c184ed2e4205aefd2de721c5a68e",
+      "archive_entry": "OnePlus-brand-assets/OnePlus LOGO/Logo/Logo RGB/OnePlus_L_White_RGB.png",
+      "background": "dark",
+      "transformations": [],
+      "note": "Original official white transparent logo PNG, copied from the official brand archive without pixel changes.",
+      "artifacts": [
+        {
+          "path": "Originals/oneplus/OnePlus_L_White_RGB.png",
+          "sha256": "7824bd1b221f8b4109aad1a6d8bba23f7b85408b2a9cb3e434b696b1de2c9c96",
+          "bytes": 7388,
+          "width": 1056,
+          "height": 1056,
+          "bit_depth": 8,
+          "color_type": 6
+        }
+      ]
+    },
+    {
+      "id": "huawei",
+      "appearance": "dark",
+      "status": "available",
+      "render_input": "Originals/huawei/official-logo-dark.png",
+      "sha256": "8fd2084b77f055223e7f4182d5da0e41bf5dc62886df4ce4b5e52ef815f2c22f",
+      "format": "png",
+      "source_page": "https://consumer.huawei.com/cn/",
+      "download_url": "https://consumer.huawei.com/etc/designs/huawei-cbg-site/clientlib-campaign-v4/common-v4/images/logo-dark.svg",
+      "source_evidence": "Official consumer homepage header contains img.image-dark referencing logo-dark.svg alongside the regular logo.svg. The original dark SVG embeds a 3839x1183 PNG containing the red flower and white HUAWEI wordmark.",
+      "background": "dark",
+      "transformations": [
+        "Decoded the embedded data:image/png;base64 payload in the official SVG into its exact original PNG bytes. No shape, pixel, color or alpha changes; original SVG retained."
+      ],
+      "note": "The official SVG is a raster wrapper rather than vector paths. Use the embedded original high-resolution transparent PNG directly; do not claim it is vector or apply the wrapper stretch/crop transform.",
+      "artifacts": [
+        {
+          "path": "Originals/huawei/official-logo-dark.svg",
+          "sha256": "1f50ea5e2779ee72cee740074a30e267bf82e9f73e81585bc4b3249c2357cdc6",
+          "bytes": 105215
+        },
+        {
+          "path": "Originals/huawei/official-logo-dark.png",
+          "sha256": "8fd2084b77f055223e7f4182d5da0e41bf5dc62886df4ce4b5e52ef815f2c22f",
+          "bytes": 78404,
+          "width": 3839,
+          "height": 1183,
+          "bit_depth": 8,
+          "color_type": 6
+        }
+      ]
+    }
+  ]
+}

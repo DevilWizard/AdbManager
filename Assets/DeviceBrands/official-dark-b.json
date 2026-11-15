@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "retrieved_at": "2026-11-15",
+  "brands": [
+    {
+      "id": "vivo",
+      "appearance": "dark",
+      "status": "official-style-derived",
+      "render_input": "Originals/vivo/official-dark.svg",
+      "format": "svg",
+      "sha256": "03c188ec8f60c89d673311a75ff5a1801e8910f2d9a258df8ce098025bc2a474",
+      "source_page": "https://www.vivo.com.cn/",
+      "download_url": "https://asia-exstatic.vivoglobal.com/static/bus/include/cn-header/dist/css/Header-icon-pc_ed5eab6.ttf",
+      "source_input": "Originals/vivo/official-logo.svg",
+      "source_sha256": "44c945b22623a4b0c7d7b32eb8d97a0fd16ce5157c820e9580b753537c4117f5",
+      "style_evidence_file": "Originals/vivo/official-header.css",
+      "style_evidence_sha256": "d775eaa1a15a7f219cdbd212ba2d8c3d42e6e1db1311141c2041f0c3386a82df",
+      "official_style_rule": ".vp-head.vp-head-theme-white .vp-head-wrap-pc .vp-head-logo a:before{color:#fff}",
+      "transformation": "Apply the official website white-header-theme color to the exact existing official font glyph outline. No path/viewBox/geometric changes. This is a faithful reproduction of an official CSS/glyph combination, not a separately downloaded white SVG."
+    },
+    {
+      "id": "oppo",
+      "appearance": "dark",
+      "status": "official-style-derived",
+      "render_input": "Originals/oppo/official-dark.svg",
+      "format": "svg",
+      "sha256": "5545109271a16dc64c5789faa8b7bef0ad5b9cee6e84d1ce6c56600e58f2d569",
+      "source_page": "https://www.oppo.com/cn/",
+      "download_url": "https://www.oppo.com/jimu/oppo-site-nav/client/oppo_nav_main.0f94bf4067653f8a47f0.css",
+      "source_input": "Originals/oppo/official-logo.svg",
+      "source_sha256": "297c469a60d6be652328c2624ef9b61b0d95ba901e294bd464a857696d1682a0",
+      "style_evidence_file": "Originals/oppo/official-dark-header.css",
+      "style_evidence_sha256": "c7d08800c659e80c79b62d32bef34af79ad5a86a2866d15e90e6c6bbed08e954",
+      "official_style_rule": ".dark-theme #header-v2 .fill path{fill:#fff}",
+      "transformation": "Apply exact official dark-theme path fill #fff to the original inline SVG. All path/viewBox/geometry remain unchanged. This is an official CSS-derived variant rather than an independent downloaded white SVG."
+    },
+    {
+      "id": "motorola",
+      "appearance": "dark",
+      "status": "official-original",
+      "render_input": "Originals/motorola/official-dark.svg",
+      "format": "svg",
+      "sha256": "83025c5fa84a2e06feb780837e1a6ec9c62c6d3d1d3f305196c8c4345d30af57",
+      "source_page": "https://www.motorola.com/us/en",
+      "download_url": "https://p4-ofp.static.pub/MOTO/assets/masthead/logo_moto.6676278b2f6d8e48.svg",
+      "transformation": "Original white batwing-circle SVG directly referenced by the official Motorola Mobility homepage; bytes preserved."
+    },
+    {
+      "id": "asus",
+      "appearance": "dark",
+      "status": "official-original",
+      "render_input": "Originals/asus/official-dark.png",
+      "format": "png",
+      "sha256": "c945dd15ed0b095a5dddae7270779b54aecd1344a242dcf5b839e094d9e755d3",
+      "source_page": "https://press.asus.com/media/corporate-assets/2/albums/47/?slide=3625f3e5-dec1-4625-aa20-86f1a394ba4c",
+      "download_url": "https://press.asus.com/assets/w_7324,h_5486/3625f3e5-dec1-4625-aa20-86f1a394ba4c/ASUS%20logo%20white.png",
+      "pixel_width": 7324,
+      "pixel_height": 5486,
+      "has_alpha": true,
+      "transformation": "Downloaded the official pressroom Original Size ASUS logo white PNG verbatim. Runtime may crop transparent margins without resampling; preserve the official original here.",
+      "trim_transparent_padding": true
+    },
+    {
+      "id": "sony",
+      "appearance": "dark",
+      "status": "official-original",
+      "render_input": "Originals/sony/official.svg",
+      "format": "svg",
+      "sha256": "78b37a72f3a7258eba307eb30292dde94a2d5c256e2614650d7d2f244905118e",
+      "source_page": "https://www.sony.net/",
+      "download_url": "https://www.sony.net/",
+      "transformation": "Reuse the exact existing official white inline SVG on a dark backing; no recoloring."
+    },
+    {
+      "id": "sony",
+      "appearance": "light",
+      "status": "unavailable",
+      "source_page": "https://www.sony.net/",
+      "reason": "No reliable standalone official black SVG obtained from checked official pages; do not invent a black version. Keep existing white original with dark backing as the light-mode fallback."
+    },
+    {
+      "id": "lenovo",
+      "appearance": "shared",
+      "status": "official-original",
+      "render_input": "Originals/lenovo/official.png",
+      "format": "png",
+      "sha256": "f769fb55805db720f56d47dc1942362f07e117be33858218d10e3c71c9343ade",
+      "source_page": "https://brandworld.lenovo.com/visual-identity/logo/",
+      "download_url": "https://media.lenovobrandworld.fiestic.com/2022/06/08010946/LenovoLogo_POS-Red-H.png",
+      "transformation": "Use the same official red containing rectangle and white wordmark in both appearances; do not remove the required red shape."
+    },
+    {
+      "id": "honor",
+      "appearance": "dark",
+      "status": "unavailable",
+      "source_page": "https://www.honor.com/cn/",
+      "reason": "Official CN/global homepage headers only reference the existing black SVG. Inspected full official header CSS and footer CSS: no logo-targeted white color, mask/currentColor, invert/brightness presentation rule found. The predictable white asset URL returned 404. This is a limited-source result, not a claim that HONOR never provides a white logo; no unproven recoloring is supplied.",
+      "checked_official_pages": [
+        "https://www.honor.com/cn/",
+        "https://www.honor.com/global/"
+      ],
+      "checked_official_stylesheets": [
+        {
+          "url": "https://www.honor.com/etc.clientlibs/honor-site/components/content/common/header/clientlib.min.6760cedbaaa0e909e6df1ce674bd5aa6.css",
+          "sha256": "290db89b9c73d7a6d935244415866c5f9581798a3666ef31b8ce6d242458b63d"
+        },
+        {
+          "url": "https://www.honor.com/etc.clientlibs/honor-site/components/content/common/footer/clientlib.min.0a86a3cadd948d179236ea0b4c7edba7.css",
+          "sha256": "277eb70de594371a2eed70ccc4fffe98359e08dd8a4cc9dcae616bcc9a12d9fb"
+        }
+      ]
+    }
+  ]
+}

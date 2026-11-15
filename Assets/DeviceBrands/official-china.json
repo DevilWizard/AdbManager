@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "source_policy": "Brand official websites/CDNs only; no Simple Icons inputs.",
+  "brands": [
+    {
+      "id": "huawei",
+      "slug": "huawei",
+      "source_page": "https://www.huawei.com/en/",
+      "download_url": "https://www.huawei.com/-/media/htemplate-home/1.0.1.20251205144752/components/assets/img/favicon-logo.svg",
+      "obtained_at": "2026-11-15",
+      "original_file": "Originals/huawei/corporate-flower.svg",
+      "render_input": "Originals/huawei/corporate-flower.svg",
+      "format": "svg",
+      "sha256": "18c6f80d423c1b1e01e4a6e02f66e1375567fd909de1af55c8013430a504126d",
+      "artifacts": [
+        {
+          "path": "Originals/huawei/corporate-flower.svg",
+          "sha256": "18c6f80d423c1b1e01e4a6e02f66e1375567fd909de1af55c8013430a504126d",
+          "role": "render_input",
+          "format": "svg"
+        },
+        {
+          "path": "Originals/huawei/official-logo.svg",
+          "sha256": "3559ddfc61f5b93a44e65fd769367a4d23437efb5069768274ec31bef19966a1",
+          "role": "official_wordmark_alternative",
+          "format": "svg"
+        }
+      ],
+      "transformations": [],
+      "trademark_note": "Logo belongs to the respective brand. Downloaded from brand official website/CDN for device identification; no affiliation is implied.",
+      "source_evidence": "Official corporate homepage link rel=\"Shortcut Icon\" directly references this SVG. Original includes brand flower and wordmark; paths, gradient and viewBox retained verbatim.",
+      "local_filename_note": "The official URL ends in favicon-logo.svg. The downloaded SVG bytes were saved unchanged under the descriptive local filename Originals/huawei/corporate-flower.svg; only the local filename differs. SHA-256 is computed from these original decoded HTTP response bytes; no geometry, color, gradient or XML edits were made."
+    },
+    {
+      "id": "honor",
+      "slug": "honor",
+      "source_page": "https://www.honor.com/cn/",
+      "download_url": "https://www-file.honor.com/content/dam/honor/common/logo/honor-logo-black.svg",
+      "obtained_at": "2026-11-15",
+      "original_file": "Originals/honor/official-logo.svg",
+      "render_input": "Originals/honor/official-logo.svg",
+      "format": "svg",
+      "sha256": "d99021bdd6f4a4ac78c88e27a9dfc74537a2e16d4c1cf9fb29b559f39ee18e0e",
+      "artifacts": [
+        {
+          "path": "Originals/honor/official-logo.svg",
+          "sha256": "d99021bdd6f4a4ac78c88e27a9dfc74537a2e16d4c1cf9fb29b559f39ee18e0e",
+          "role": "render_input",
+          "format": "svg"
+        }
+      ],
+      "transformations": [],
+      "trademark_note": "Logo belongs to the respective brand. Downloaded from brand official website/CDN for device identification; no affiliation is implied."
+    },
+    {
+      "id": "xiaomi",
+      "slug": "xiaomi",
+      "source_page": "https://www.mi.com/",
+      "download_url": "https://cdn.cnbj1.fds.api.mi-img.com/mi.com-assets/home/pro-assets/45fc632.js",
+      "obtained_at": "2026-11-15",
+      "original_file": "Originals/xiaomi/official-logo.svg",
+      "render_input": "Originals/xiaomi/official-logo.svg",
+      "format": "svg",
+      "sha256": "07473b5fd05d6e3c8a871d5eed997882520e096e76c028691f3d53b7e3980271",
+      "artifacts": [
+        {
+          "path": "Originals/xiaomi/official-logo.svg",
+          "sha256": "07473b5fd05d6e3c8a871d5eed997882520e096e76c028691f3d53b7e3980271",
+          "role": "render_input",
+          "format": "svg"
+        },
+        {
+          "path": "Originals/xiaomi/official-header-component.js",
+          "sha256": "266de2d773d263cff7c28984625617328b5f86e54c346b92c553ce07dfaddeb4",
+          "role": "original_download"
+        }
+      ],
+      "transformations": [
+        "Extracted the exact four SVG path d/fill attributes and viewBox=0 0 808 808 from the official homepage MiLogo Vue render component. No JavaScript executed, no shape or color edits."
+      ],
+      "trademark_note": "Logo belongs to the respective brand. Downloaded from brand official website/CDN for device identification; no affiliation is implied."
+    },
+    {
+      "id": "oppo",
+      "slug": "oppo",
+      "source_page": "https://www.oppo.com/cn/",
+      "download_url": "https://www.oppo.com/cn/",
+      "obtained_at": "2026-11-15",
+      "original_file": "Originals/oppo/official-logo.svg",
+      "render_input": "Originals/oppo/official-logo.svg",
+      "format": "svg",
+      "sha256": "297c469a60d6be652328c2624ef9b61b0d95ba901e294bd464a857696d1682a0",
+      "artifacts": [
+        {
+          "path": "Originals/oppo/official-logo.svg",
+          "sha256": "297c469a60d6be652328c2624ef9b61b0d95ba901e294bd464a857696d1682a0",
+          "role": "render_input",
+          "format": "svg"
+        },
+        {
+          "path": "Originals/oppo/official-header-excerpt.html",
+          "sha256": "e463f1b21ebb87482bfcafeea64a85b5c31ca9c7984d2397203fcf88dc85f9f6",
+          "role": "source_excerpt"
+        }
+      ],
+      "transformations": [
+        "Copied the complete original inline svg element from the official homepage header anchor aria-label=\"OPPO homepage\"; black fill, paths and viewBox retained without edits."
+      ],
+      "trademark_note": "Logo belongs to the respective brand. Downloaded from brand official website/CDN for device identification; no affiliation is implied."
+    },
+    {
+      "id": "vivo",
+      "slug": "vivo",
+      "source_page": "https://www.vivo.com.cn/",
+      "download_url": "https://asia-exstatic.vivoglobal.com/static/bus/include/cn-header/dist/css/Header-icon-pc_ed5eab6.ttf",
+      "obtained_at": "2026-11-15",
+      "original_file": "Originals/vivo/official-logo.svg",
+      "render_input": "Originals/vivo/official-logo.svg",
+      "format": "svg",
+      "sha256": "44c945b22623a4b0c7d7b32eb8d97a0fd16ce5157c820e9580b753537c4117f5",
+      "artifacts": [
+        {
+          "path": "Originals/vivo/official-logo.svg",
+          "sha256": "44c945b22623a4b0c7d7b32eb8d97a0fd16ce5157c820e9580b753537c4117f5",
+          "role": "render_input",
+          "format": "svg"
+        },
+        {
+          "path": "Originals/vivo/Header-icon-pc_ed5eab6.ttf",
+          "sha256": "b793c579fa1c7cd927f297dcf8ea977c58f23c3295acaed68b9aaf8faeca6b59",
+          "role": "original_download"
+        },
+        {
+          "path": "Originals/vivo/official-header.css",
+          "sha256": "d775eaa1a15a7f219cdbd212ba2d8c3d42e6e1db1311141c2041f0c3386a82df",
+          "role": "source_stylesheet"
+        },
+        {
+          "path": "Originals/vivo/extract-official-glyph.swift",
+          "sha256": "e732f6a53752e938a61f2563dd9f13a7390ea5541f39e9cd35f046a747ff908c",
+          "role": "extraction_recipe"
+        }
+      ],
+      "transformations": [
+        "Official header CSS selects font-family Header-icon-pc, glyph U+E910 and color #242933. CoreText extracted the original TTF glyph path at size 1000 without tracing. The SVG applies only translation and Y-axis flip to preserve the original outline, with a tight viewBox."
+      ],
+      "trademark_note": "Logo belongs to the respective brand. Downloaded from brand official website/CDN for device identification; no affiliation is implied."
+    },
+    {
+      "id": "oneplus",
+      "slug": "oneplus",
+      "source_page": "https://www.oneplus.com/uk/brand/asset",
+      "download_url": "https://oasis.opstatics.com/content/dam/oasis/page/vi/OnePlus-brand-assets.zip",
+      "obtained_at": "2026-11-15",
+      "original_file": "Originals/oneplus/OnePlus_L_Red_RGB.png",
+      "render_input": "Originals/oneplus/OnePlus_L_Red_RGB.png",
+      "format": "png",
+      "sha256": "c1c717df64159cf135d4e24b70d04ae91d640727ae50b4a833a90c9afd4692bf",
+      "artifacts": [
+        {
+          "path": "Originals/oneplus/OnePlus_L_Red_RGB.png",
+          "sha256": "c1c717df64159cf135d4e24b70d04ae91d640727ae50b4a833a90c9afd4692bf",
+          "role": "render_input",
+          "format": "png"
+        },
+        {
+          "path": "Originals/oneplus/OnePlus_L_Red_CMYK.eps",
+          "sha256": "fad650b639c5803b8fda7363a5d4d30ad5cca124ed306e488af58713c029e590",
+          "role": "original_vector_alternative"
+        }
+      ],
+      "transformations": [
+        "Extracted official archive entry OnePlus-brand-assets/OnePlus LOGO/Logo/Logo RGB/OnePlus_L_Red_RGB.png verbatim (1056x1056 PNG); no resizing, recoloring or raster conversion."
+      ],
+      "trademark_note": "Logo belongs to the respective brand. Downloaded from brand official website/CDN for device identification; no affiliation is implied.",
+      "archive_sha256": "bb4418994996cee0afce0a960ba741b72e68c184ed2e4205aefd2de721c5a68e"
+    }
+  ]
+}

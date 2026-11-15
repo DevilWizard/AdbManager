@@ -1,0 +1,17 @@
+# Swift Package Manager 与 macOS 本地构建产物。
+.build/
+.swiftpm/
+dist/
+.DS_Store
+*.xcuserstate
+
+# Xcode 本机用户状态与临时交换文件，不属于可共享的项目配置。
+xcuserdata/
+*.swp
+*.swo
+
+# 素材准备脚本的失败或中断暂存目录；正式 Runtime 资源仍需入库。
+Assets/DeviceBrands/.Runtime.*/
+
+# 官方原始设计包与字体仅留在本机；源码仓库保留运行资源、来源和转换记录。
+Assets/DeviceBrands/Originals/

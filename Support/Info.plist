@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- 使用固定应用标识，以便系统在多次本地构建后识别为同一应用。 -->
+    <key>CFBundleIdentifier</key>
+    <string>com.zackou.AdbManager</string>
+    <key>CFBundleName</key>
+    <string>AdbManager</string>
+    <key>CFBundleDisplayName</key>
+    <string>AdbManager</string>
+    <key>CFBundleExecutable</key>
+    <string>AdbManager</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.9</string>
+    <key>CFBundleVersion</key>
+    <string>10</string>
+    <!-- 图标由用户指定的官方 Android SVG 等比栅格化后生成。 -->
+    <key>CFBundleIconFile</key>
+    <string>AppIcon</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>14.0</string>
+    <key>LSApplicationCategoryType</key>
+    <string>public.app-category.developer-tools</string>
+    <key>NSHighResolutionCapable</key>
+    <true/>
+    <key>NSPrincipalClass</key>
+    <string>NSApplication</string>
+    <key>NSLocalNetworkUsageDescription</key>
+    <string>用于发现并连接局域网内的 Android 调试设备，以及选择手机可访问的代理地址。</string>
+    <!-- 不启用 App Sandbox：本地开发工具需执行用户选择的 adb 二进制文件。 -->
+</dict>
+</plist>

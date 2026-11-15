@@ -1,0 +1,73 @@
+{
+  "retrieved_on": "2026-11-15",
+  "description": "官方原始素材；未重新编码、未重绘，品牌标识与商标权归各权利人所有。",
+  "brands": {
+    "samsung": {
+      "source_page": "https://www.samsung.com/us/about-us/brand-identity/logo/",
+      "download_url": "https://images.samsung.com/is/content/samsung/assets/global/about-us/resource/Samsung_lettermark.zip",
+      "archive_sha256": "b1a43fd506c2fdaa40724eea96645c9c3f2091f502d70d8039a7fe6f42a2c994",
+      "selected_archive_entries": [
+        "Blue/Samsung_Orig_Wordmark_BLUE_RGB.ai",
+        "Blue/Samsung_Orig_Wordmark_BLUE_RGB.png"
+      ],
+      "archive_formats": [
+        "RGB AI (PDF-compatible)",
+        "CMYK AI",
+        "PMS 286C AI (Blue only)",
+        "PNG",
+        "JPEG"
+      ],
+      "vector_info": {
+        "format": "PDF 1.5 inside .ai file",
+        "pages": 1,
+        "page_points": [
+          628.238,
+          166.885
+        ],
+        "note": "可将RGB.ai原字节复制为.pdf供AppKit读取；仅更改扩展名，不重新绘制或转码。"
+      },
+      "png_info": {
+        "width": 1600,
+        "height": 425,
+        "bit_depth": 8,
+        "color_type": "RGBA",
+        "alpha": true
+      },
+      "artifacts": [
+        {
+          "path": "Originals/samsung/Samsung_Orig_Wordmark_BLUE_RGB.ai",
+          "sha256": "9ee93ee9cbb46e2a80aed595d828d3dc31c016a6aaea78b56cb0386db3e7b118",
+          "bytes": 294343
+        },
+        {
+          "path": "Originals/samsung/Samsung_Orig_Wordmark_BLUE_RGB.png",
+          "sha256": "c4bd9477e460a2f924329aef53ff66e4d47b775a7d30f363dd73559586bb7a1c",
+          "bytes": 31823
+        }
+      ]
+    },
+    "google": {
+      "source_page": "https://partnermarketinghub.withgoogle.com/brands/google/branding-guidelines/how-to-show-googles-brand/",
+      "download_url": "https://storage.googleapis.com/pe-portal-consumer-prod-wagtail-static/original_images/GoogleG_FullColor_RGB.png",
+      "download_note": "由官方品牌页PNG下载按钮取得临时签名链接；记录稳定对象URL，避免把会过期的签名参数写入来源。",
+      "version_note": "Google官方当前完整彩色渐变G；官方品牌页说明使用该新版。",
+      "png_info": {
+        "width": 2820,
+        "height": 2820,
+        "bit_depth": 8,
+        "color_type": "RGBA",
+        "alpha": true,
+        "color_profile": "sRGB chunk, rendering intent 0",
+        "gamma": 0.45455,
+        "embedded_iccp": false
+      },
+      "artifacts": [
+        {
+          "path": "Originals/google/GoogleG_FullColor_RGB.png",
+          "sha256": "4d5cfbd85af19c003770a74f8de210156ca42c54ac0a4cb0d95572c286c882a6",
+          "bytes": 137714
+        }
+      ]
+    }
+  }
+}

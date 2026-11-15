@@ -1,0 +1,104 @@
+{
+  "retrieved_at": "2026-11-15",
+  "brands": [
+    {
+      "id": "asus",
+      "title": "ASUS",
+      "status": "official",
+      "source_page": "https://www.asus.com/",
+      "download_url": "https://www.asus.com/media/img/2017/images/n-logo-asus.svg",
+      "retrieved_at": "2026-11-15",
+      "render_input": "Originals/asus/official.svg",
+      "format": "svg",
+      "sha256": "e3844c7b98dfdc8684c4a01024e4d2d12940f5437cd62dbab9b51639dc67ee1a",
+      "artifacts": [
+        {
+          "path": "Originals/asus/official.svg",
+          "sha256": "e3844c7b98dfdc8684c4a01024e4d2d12940f5437cd62dbab9b51639dc67ee1a"
+        }
+      ],
+      "transformation": "Original standalone SVG referenced in ASUS homepage structured data; bytes preserved.",
+      "rights": "Brand artwork and trademarks remain property of the respective brand owner; no third-party icon-library license is claimed.",
+      "backing": "white"
+    },
+    {
+      "id": "lenovo",
+      "title": "Lenovo",
+      "status": "official",
+      "source_page": "https://brandworld.lenovo.com/visual-identity/logo/",
+      "download_url": "https://media.lenovobrandworld.fiestic.com/2022/06/08010946/LenovoLogo_POS-Red-H.png",
+      "retrieved_at": "2026-11-15",
+      "render_input": "Originals/lenovo/official.png",
+      "format": "png",
+      "sha256": "f769fb55805db720f56d47dc1942362f07e117be33858218d10e3c71c9343ade",
+      "artifacts": [
+        {
+          "path": "Originals/lenovo/official.png",
+          "sha256": "f769fb55805db720f56d47dc1942362f07e117be33858218d10e3c71c9343ade"
+        }
+      ],
+      "transformation": "Official Brand World signature red logo including its required red containing rectangle; original downloaded PNG bytes preserved.",
+      "rights": "Brand artwork and trademarks remain property of the respective brand owner; no third-party icon-library license is claimed.",
+      "backing": "white"
+    },
+    {
+      "id": "motorola",
+      "title": "Motorola",
+      "status": "official",
+      "source_page": "https://www.motorola.com/us/en",
+      "download_url": "https://p1-ofp.static.pub//fes/cms/2026/05/22/kb5jrxfx37rrq0x8aflsk78ni5eyis904121.svg",
+      "retrieved_at": "2026-11-15",
+      "render_input": "Originals/motorola/official.svg",
+      "format": "svg",
+      "sha256": "bc9ef53efa333cf216ca80dc3f4f0dbfa4cfb8e8ad9c55a88e3bc015f0b5b188",
+      "artifacts": [
+        {
+          "path": "Originals/motorola/official.svg",
+          "sha256": "bc9ef53efa333cf216ca80dc3f4f0dbfa4cfb8e8ad9c55a88e3bc015f0b5b188"
+        }
+      ],
+      "transformation": "Original black batwing SVG directly referenced by Motorola Mobility homepage navigation config; bytes preserved.",
+      "rights": "Brand artwork and trademarks remain property of the respective brand owner; no third-party icon-library license is claimed.",
+      "backing": "white"
+    },
+    {
+      "id": "sony",
+      "title": "Sony",
+      "status": "official",
+      "source_page": "https://www.sony.net/",
+      "download_url": "https://www.sony.net/",
+      "retrieved_at": "2026-11-15",
+      "render_input": "Originals/sony/official.svg",
+      "format": "svg",
+      "sha256": "78b37a72f3a7258eba307eb30292dde94a2d5c256e2614650d7d2f244905118e",
+      "artifacts": [
+        {
+          "path": "Originals/sony/official.svg",
+          "sha256": "78b37a72f3a7258eba307eb30292dde94a2d5c256e2614650d7d2f244905118e"
+        }
+      ],
+      "transformation": "Exact inline SVG extracted from Sony Group official homepage p.cg-header__logo; all path data and white fills preserved. Render on dark backing; no recoloring.",
+      "rights": "Brand artwork and trademarks remain property of the respective brand owner; no third-party icon-library license is claimed.",
+      "backing": "black"
+    },
+    {
+      "id": "nokia",
+      "title": "Nokia",
+      "status": "unavailable",
+      "source_page": "https://www.hmd.com/en_int/nokia-smartphones-and-tablets",
+      "retrieved_at": "2026-11-15",
+      "render_input": null,
+      "format": null,
+      "artifacts": [],
+      "reason": "Traditional Nokia phone wordmark was not available as a standalone original from inspected official HMD homepage, support, press and Nokia collection pages. Nokia owner legacy media/PDF endpoints returned HTTP 403. Do not substitute the 2023 Nokia network company logo or a third-party icon; use Android fallback until a reliable official traditional logo is obtained.",
+      "checked_official_pages": [
+        "https://www.hmd.com/en_int",
+        "https://www.hmd.com/en_int/press",
+        "https://www.hmd.com/en_int/support/nokia-g60-5g-user-guide",
+        "https://www.hmd.com/en_int/nokia-smartphones-and-tablets",
+        "https://www.nokia.com/about-us/newsroom/media-resources/media-library/nokia-logo/",
+        "https://www.nokia.com/system/files/2023-01/nokia_slides_2022_q4_fi.pdf"
+      ]
+    }
+  ]
+}

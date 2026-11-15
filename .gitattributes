@@ -1,0 +1,8 @@
+# 运行资源使用二进制比较，避免 Git 将 PDF 内容误判为带行尾空白的文本。
+# binary 同时关闭文本行尾转换、文本 diff 和自动文本合并；不改写资源字节。
+*.pdf binary
+*.png binary
+*.icns binary
+
+# Swift、脚本、Markdown、JSON 和 SVG 等文本继续使用 Git 默认处理，
+# 不在这里全局指定行尾，以免首次发布触发无关的批量格式转换。
