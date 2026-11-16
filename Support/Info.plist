@@ -14,9 +14,9 @@
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
-    <string>1.0.9</string>
+	<string>1.0.10</string>
     <key>CFBundleVersion</key>
-    <string>10</string>
+	<string>11</string>
     <!-- 图标由用户指定的官方 Android SVG 等比栅格化后生成。 -->
     <key>CFBundleIconFile</key>
     <string>AppIcon</string>

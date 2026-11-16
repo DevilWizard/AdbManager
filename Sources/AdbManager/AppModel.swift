@@ -46,7 +46,9 @@ final class AppModel {
         service = executable.map { ADBService(executableURL: $0) }
         let addresses = LocalNetwork.ipv4Addresses()
         proxyHostCandidates = addresses
-        proxyHost = preferences.string(forKey: "proxyHost") ?? addresses.first ?? ""
+        // 启动时始终使用本次检测到的 Mac 局域网地址，避免恢复上一个网络的旧 IP。
+        // 没有可用地址时保持为空，交由用户填写；端口仍独立恢复上次保存的偏好。
+        proxyHost = addresses.first ?? ""
         proxyPort = preferences.string(forKey: "proxyPort") ?? "9090"
         // 没有正在执行的操作时不展示成功横幅，避免已连接后仍显示入门提示。
         statusMessage = executable == nil ? "请选择本机 ADB 可执行文件" : nil

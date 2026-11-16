@@ -8,9 +8,11 @@
 
 原生 SwiftUI macOS Android 设备管理工具，支持多设备、插线后一键建立无线 ADB 连接，以及 Android 全局 HTTP 代理设置。最低系统版本为 macOS 14。
 
-当前版本：**1.0.9**（构建号 10）。
+当前版本：**1.0.10**（构建号 11）。
 
-本版让品牌 Logo 跟随系统深浅外观：有官方反白版本的品牌自动切换，Google 彩色 G、小米橙底白标和 Lenovo 红框标识共用原图，承载底色随主题调整。矢量标识保留 PDF 轮廓，位图保留原始像素。HONOR 暂未取得可靠深色版本，深色时仍以浅灰底承载官方黑字，保证可读；Sony 暂未取得官方浅色黑字版本，浅色时保留深底白字。侧栏宽度过渡和设备刷新策略不变。
+本版修复代理主机默认值：每次启动都会检测当前 Mac 的局域网 IPv4，并用检测到的第一个地址填入代理主机，不恢复上次保存的主机。没有可用地址时保持为空，可手动填写；端口继续恢复上次应用时保存的配置，首次默认 `9090`。运行中的定时刷新不覆盖输入框，切换设备时沿用当前输入。
+
+品牌 Logo 跟随系统深浅外观：有官方反白版本的品牌自动切换，Google 彩色 G、小米橙底白标和 Lenovo 红框标识共用原图，承载底色随主题调整。矢量标识保留 PDF 轮廓，位图保留原始像素。HONOR 暂未取得可靠深色版本，深色时以浅灰底承载官方黑字；Sony 暂未取得官方浅色黑字版本，浅色时保留深底白字。
 
 品牌识别优先读取手机上报的 `ro.product.brand`，无法识别时再使用 `ro.product.manufacturer`。内置 Samsung、Google、Xiaomi、Huawei、Honor、OPPO、vivo、OnePlus、Motorola、Lenovo、Sony、ASUS 共 12 个品牌的官方离线 Logo；Nokia 暂未取得可信的手机品牌官方素材，和未知品牌一样回退 Android 图标，不使用 Nokia 网络公司的新标识代替。原件、来源 URL、SHA-256 与转换记录见 [品牌资源说明](Assets/DeviceBrands/README.md)。
 
@@ -29,7 +31,7 @@
 
 下载包为 Universal App，包含 Apple Silicon（arm64）与 Intel（x86_64）两种架构，最低支持 macOS 14。
 
-1. 使用 macOS 14 或更新版本，从 Release 的 **Assets** 下载 `AdbManager-v1.0.9-macOS-universal.zip`，以及同页的 `SHA256SUMS.txt`。GitHub 自动生成的 **Source code** 是源码压缩包，使用 App 请下载上面的 App ZIP。
+1. 使用 macOS 14 或更新版本，从 Release 的 **Assets** 下载 `AdbManager-v1.0.10-macOS-universal.zip`，以及同页的 `SHA256SUMS.txt`。GitHub 自动生成的 **Source code** 是源码压缩包，使用 App 请下载上面的 App ZIP。
 2. 在下载目录校验压缩包：
 
    ```bash
@@ -88,9 +90,11 @@ swift test
 ## Proxyman 代理
 
 1. 在 Mac 上打开 Proxyman，并确认其监听端口。默认端口为 **9090**。
-2. 选中需要抓包的 Android 设备，填写手机可访问的 Mac 局域网 IP；应用也会提供本机地址候选。
-3. 保持默认 9090 或填写自定义端口，应用代理设置。
+2. 选中需要抓包的 Android 设备，核对启动时自动填入的当前 Mac 局域网 IP。有多个网卡时，可从“本机地址”选择手机能访问的地址；未检测到地址时手动填写。
+3. 核对端口：应用会恢复上次应用时保存的端口，首次默认 **9090**，也可填写自定义端口；然后点击“应用代理”。
 4. 结束抓包后点击关闭代理，避免手机继续连接已关闭的代理服务。
+
+每次启动都会重新检测主机地址，运行中的定时刷新和设备切换不覆盖当前输入。自动检测只填充输入框；点击“应用代理”后才会将主机与端口写入手机。
 
 代理设置通过 ADB 写入 Android 全局 HTTP 代理；它不会更改 Mac 系统代理或 Proxyman 应用设置。部分网络库、VPN 和应用可能不遵守 Android 全局代理，因此“设置成功”不等于所有流量均会经过 Proxyman。
 
